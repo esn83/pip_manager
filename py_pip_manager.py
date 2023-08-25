@@ -50,7 +50,7 @@ class py_pyp_manager():
 		today = datetime.today().strftime('%Y-%m-%d')
 		self.log = today + '\n'
 		self.log = updated_str + '\n\n'
-		# wtire to log
+		# write to log
 		script_dir = os.path.dirname(__file__) # <-- absolute dir the script is in
 		rel_path = "log.txt"
 		abs_file_path = os.path.join(script_dir, rel_path)
