@@ -22,7 +22,7 @@ def update_package(package):
 
 def update_all_packages(package_list):
 	for package in package_list:
-		print('Updating package : ',package)
+		print('Updating package : '+package)
 		update_package(package)
 		print()
 
