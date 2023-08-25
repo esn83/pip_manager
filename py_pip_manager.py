@@ -32,7 +32,7 @@ class py_pyp_manager():
 
 		outdated_split = outdated_str.split('\n')
 		outdated_split = outdated_split[2:] # remove first 2 lines
-		outdated_split = outdated_split[:-1] # remove last empty line
+		outdated_split = outdated_split[:-1] # remove last 1 empty line
 		for line in outdated_split:
 			print('line :',line)
 			line_split = line.split(' ')
@@ -46,9 +46,9 @@ class py_pyp_manager():
 	def update_package(self, package):
 		#subprocess.check_call([sys.executable, "-m", "pip", "install", package, "--upgrade"])
 		updated = subprocess.check_output([sys.executable, "-m", "pip", "install", package, "--upgrade"], shell=False)	
-		updated_str = updated.decode('utf-8')
 		
 		# write to log
+		updated_str = updated.decode('utf-8')
 		today = datetime.today().strftime('%Y-%m-%d')
 		self.log = today + '\n'
 		self.log = updated_str + '\n\n'
@@ -61,12 +61,12 @@ class py_pyp_manager():
 	def update_all_packages(self, package_list):
 		for package in package_list:
 			print('updating package :',package)
-			update_package(package)
+			self.update_package(package)
 			print()
 
 # --------------------------------------
 
-ppm = py_pyp_manager()
+ppm = py_pyp_manager() # class instance
 
 #ppm.update_pip()
 
