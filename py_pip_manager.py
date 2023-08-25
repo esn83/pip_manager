@@ -47,10 +47,11 @@ class py_pyp_manager():
 		#subprocess.check_call([sys.executable, "-m", "pip", "install", package, "--upgrade"])
 		updated = subprocess.check_output([sys.executable, "-m", "pip", "install", package, "--upgrade"], shell=False)	
 		updated_str = updated.decode('utf-8')
+		
+		# write to log
 		today = datetime.today().strftime('%Y-%m-%d')
 		self.log = today + '\n'
 		self.log = updated_str + '\n\n'
-		# write to log
 		script_dir = os.path.dirname(__file__) # <-- absolute dir the script is in
 		rel_path = "log.txt"
 		abs_file_path = os.path.join(script_dir, rel_path)
