@@ -42,6 +42,7 @@ class py_pip_manager():
 		print('self.outdated_package_list:')
 		for package in self.outdated_package_list:
 			print(package)
+		print('--------------------------------')
 
 	def update_package(self, package):
 		#subprocess.check_call([sys.executable, "-m", "pip", "install", package, "--upgrade"])
@@ -49,20 +50,20 @@ class py_pip_manager():
 		
 		# write to log
 		updated_str = updated.decode('utf-8')
-		today = datetime.today().strftime('%Y-%m-%d')
-		self.log = today + '\n' + updated_str + '\n\n'
+		today = datetime.today().strftime('%Y-%m-%d %H:%M:%S')
+		self.log = today + '\n\n' + updated_str + '\n\n'
 		script_dir = os.path.dirname(__file__) # <-- absolute dir the script is in
 		rel_path = "log.txt"
 		abs_file_path = os.path.join(script_dir, rel_path)
 		with open(abs_file_path, 'a') as log:
 			log.write(self.log)
 
-	def update_all_packages(self, package_list):
+	def update_all_packages(self):
 		self.get_outdated() # updates self.outdated_package_list
 		for package in self.outdated_package_list:
 			print('updating package :',package)
 			self.update_package(package)
-			print()
+		print('--------------------------------')
 
 # --------------------------------------
 
@@ -72,8 +73,8 @@ ppm = py_pip_manager() # class instance
 
 #ppm.get_installed_packages()
 
-ppm.get_outdated()
+#ppm.get_outdated()
 
-#ppm.update_all_packages(package_list)
+ppm.update_all_packages()
 
 # -- save log --
