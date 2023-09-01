@@ -73,8 +73,6 @@ ppm = py_pip_manager() # class instance
 
 #ppm.get_installed_packages()
 
-#ppm.get_outdated()
+ppm.get_outdated()
 
-ppm.update_all_packages()
-
-# -- save log --
+#ppm.update_all_packages()
