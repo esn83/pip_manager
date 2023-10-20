@@ -60,6 +60,12 @@ class py_pip_manager():
 
 	def update_all_packages(self):
 		self.get_outdated() # updates self.outdated_package_list
+		# update pip itself first. subsequest package updatges will report 'WARNING: There was an error checking the latest version of pip.', but seems to work anyway
+		if 'pip' in self.outdated_package_list:
+			print('updating package : pip')
+			self.update_package('pip')
+			self.outdated_package_list.remove('pip')
+
 		for package in self.outdated_package_list:
 			print('updating package :',package)
 			self.update_package(package)
