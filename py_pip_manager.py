@@ -18,6 +18,9 @@ class py_pip_manager():
 	def install(self, package):
 	    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
 
+	def uninstall(self, package):
+	    subprocess.check_call([sys.executable, "-m", "pip", "uninstall", package])
+
 	def get_outdated(self):
 		self.outdated_package_list = []
 
